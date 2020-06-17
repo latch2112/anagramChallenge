@@ -1,0 +1,10 @@
+version: "3.3"
+
+services:
+
+  anagramServer:
+    build:
+      context: .
+    image: latch2112/anagramchallenge
+    ports:
+      - "80:4567"
