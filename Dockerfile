@@ -15,5 +15,11 @@ RUN ["mvn", "verify"]
 ADD src /code/src
 RUN ["mvn", "clean", "install"]
 
+## multi-stage build to reduce size of container
+FROM openjdk:8
+
+WORKDIR /app
+COPY --from=0 /code/target/anagramChallenge-jar-with-dependencies.jar .
+
 EXPOSE 4567
-CMD ["java", "-jar", "target/anagramChallenge-jar-with-dependencies.jar"]
+CMD ["java", "-jar", "anagramChallenge-jar-with-dependencies.jar"]
