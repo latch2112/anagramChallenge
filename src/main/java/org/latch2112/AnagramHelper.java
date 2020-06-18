@@ -7,6 +7,7 @@ import java.util.*;
 
 public class AnagramHelper {
 
+    // HashSet is used for fast retrieval
     static Set<String> englishWords = new HashSet<>();
 
     // we assume string1 and string2 was previously validated
@@ -45,9 +46,7 @@ public class AnagramHelper {
                 englishWords.add(str.toLowerCase());
             }
 
-        } catch (IOException e) {
-        }
-
+        } catch (IOException e) { }
     }
 
     public static boolean isEnglishWord(String str) {

@@ -31,7 +31,7 @@ Please complete any or all of these problems in a public GitHub repository, and 
 docker-compose files with you project
 
 
-## Architecture decision:
+## Solution:
 
 - Java-Spark; a tiny framework to make for a smaller container size;
 
@@ -41,7 +41,7 @@ docker-compose files with you project
 
 - Integration tests using Postman Collection (with JavaScript's Chai framework) and newman 
 
-- For the 3b, I've decided to used one of the english dictionary available in all distribution on linux. For the simplicity of the solution, I have provided the one from the Mac OS X distribution.
+- For the problem 3b, I've decided to used one of the english dictionary available in all distribution on linux. For the simplicity of the solution, I have provided the one from the Mac OS X distribution.
 From the README:
 ```
 WEB ---- (introduction provided by jaw@riacs) -------------------------
@@ -49,21 +49,22 @@ WEB ---- (introduction provided by jaw@riacs) -------------------------
 Welcome to web2 (Webster's Second International) all 234,936 words worth.
 The 1934 copyright has lapsed, according to the supplier.
 ``` 
-Also, only same length anagram is return for brevity and simplicity of the answers. But it could include easily less length anagram.
-## To build and run the solution with docker:
+Only same length anagram is returned for simplicity.
+
+## Build and run the solution with docker:
 
 ```shell script
 docker-compose up --build anagramServer
 ```
 
-# To test:
+## Test:
 
-## Integration tests:
+### Integration tests:
 ```shell script
 docker run --network host -t postman/newman run "https://www.getpostman.com/collections/7f56d87ab98e182e9f9a"
 ```
 
-## Manual:
+### Manual:
 ```shell script
 curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost/anagrams/cinema/iceman
 ```

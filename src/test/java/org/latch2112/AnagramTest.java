@@ -55,8 +55,6 @@ public class AnagramTest {
         String[] array = {"cinema", "anemic", "iceman"};
         Set<String> expectedSets = new HashSet<>(Arrays.asList(array));
         Set<String> permutation = AnagramHelper.findPermutation("cinema");
-        System.out.println(expectedSets);
-        System.out.println(permutation);
         Assertions.assertEquals(true, expectedSets.equals(permutation));
     }
 
