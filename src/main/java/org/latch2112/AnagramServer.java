@@ -1,23 +1,33 @@
 package org.latch2112;
 
-import static spark.Spark.get;
-import static spark.Spark.halt;
-
 import com.google.gson.Gson;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static spark.Spark.*;
 
 public class AnagramServer {
 
     public static void main(String[] args) {
 
+        port(80);
+
         Gson gson = new Gson();
+        AnagramHelper.initialiseEnglishDictionary();
 
         get("/anagrams/:string1", (request, response) -> {
             String string1 = request.params(":string1");
             if (AnagramHelper.isStringValid(string1)) {
                 response.type("application/json");
-                return new AnagramsResponse(new String[]{});
+                Set<String> allPermutations = AnagramHelper.findPermutation(string1);
+                return new AnagramsResponse(allPermutations);
+
             } else {
-                return halt(400, "Bad Request");
+                response.type("application/json");
+                response.status(400);
+                return new AnagramsResponse(new HashSet<String>());
+                //return halt(400, "Bad Request");
             }
             }, gson::toJson);
 
@@ -29,7 +39,9 @@ public class AnagramServer {
                 response.type("application/json");
                 return new AreAnagramsResponse(AnagramHelper.isAnagram(string1,string2));
             } else {
-                return halt(400, "Bad Request");
+                response.type("application/json");
+                response.status(400);
+                return new AreAnagramsResponse(false);
             }
 
         }, gson::toJson);

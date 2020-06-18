@@ -7,4 +7,4 @@ services:
       context: .
     image: latch2112/anagramchallenge
     ports:
-      - "80:4567"
+      - "80:80"

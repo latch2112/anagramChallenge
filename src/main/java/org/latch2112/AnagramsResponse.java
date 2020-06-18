@@ -1,18 +1,20 @@
 package org.latch2112;
 
+import java.util.Set;
+
 public class AnagramsResponse {
 
-    private String[] anagrams;
+    private Set<String> anagrams;
 
-    AnagramsResponse(String[] anagrams) {
+    AnagramsResponse(Set<String> anagrams) {
         this.anagrams = anagrams;
     }
 
-    public String[] getAnagrams() {
+    public Set<String> getAnagrams() {
         return anagrams;
     }
 
-    public void setAnagrams(String[] anagrams) {
+    public void setAnagrams(Set<String> anagrams) {
         this.anagrams = anagrams;
     }
 }

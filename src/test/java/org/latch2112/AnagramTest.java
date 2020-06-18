@@ -1,15 +1,25 @@
+//package org.latch2112;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.util.*;
 
-import org.latch2112.AnagramHelper.*;
+
+import org.latch2112.AnagramHelper;
 
 public class AnagramTest {
 
 
+    @BeforeAll
+    static void setup() {
+        AnagramHelper.intialiseEnglishDictionary();
+    }
+    
+
     @Test
     void testValidString() {
-        System.out.println("Valid string");
+        System.out.println("Testing Valid String");
         Assertions.assertEquals( true, AnagramHelper.isStringValid("bob is bob"));
         Assertions.assertEquals( true, AnagramHelper.isStringValid("BOBisbob"));
 
@@ -17,7 +27,7 @@ public class AnagramTest {
 
     @Test
     void testInvalidString() {
-        System.out.println("InValid string");
+        System.out.println("Testing Invalid String");
         Assertions.assertEquals( false, AnagramHelper.isStringValid(""));
         Assertions.assertEquals( false, AnagramHelper.isStringValid("     "));
         Assertions.assertEquals( false, AnagramHelper.isStringValid(null));
@@ -27,7 +37,7 @@ public class AnagramTest {
 
     @Test
     void testValidAnagram() {
-        System.out.println("Valid anagrams");
+        System.out.println("Testing Valid Anagrams");
         Assertions.assertEquals( true, AnagramHelper.isAnagram("cinema", "iceman"));
         Assertions.assertEquals( true, AnagramHelper.isAnagram("Debit card", "Bad credit"));
         Assertions.assertEquals( true, AnagramHelper.isAnagram("Election results", "Lies lets recount"));
@@ -35,7 +45,7 @@ public class AnagramTest {
 
     @Test
     void testInvalidAnagram() {
-        System.out.println("Invalid anagrams");
+        System.out.println("Testing Invalid Anagrams");
         Assertions.assertEquals( false, AnagramHelper.isAnagram("test", "whatever"));
         Assertions.assertEquals( false, AnagramHelper.isAnagram("Election results", "Lies – let's recount"));
 

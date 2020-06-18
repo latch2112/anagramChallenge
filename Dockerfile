@@ -19,7 +19,8 @@ RUN ["mvn", "clean", "install"]
 FROM openjdk:8
 
 WORKDIR /app
+ADD web2 /app
 COPY --from=0 /code/target/anagramChallenge-jar-with-dependencies.jar .
 
-EXPOSE 4567
+EXPOSE 80
 CMD ["java", "-jar", "anagramChallenge-jar-with-dependencies.jar"]
