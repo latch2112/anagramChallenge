@@ -55,41 +55,38 @@ public class AnagramHelper {
     }
 
     public static Set<String> findPermutation(String input) {
-        System.out.println("Original/Input word is :" +input);
 
         input = input.replaceAll("\\s", "").toLowerCase();
         int inputLength = input.length();
-        //input = input.toLowerCase();
-        boolean[] used = new boolean[ inputLength ];
+
+        boolean[] alreadyUsedLetter = new boolean[ inputLength ];
         StringBuffer outputString = new StringBuffer();
         char[] in = input.toCharArray();
-        System.out.println("char[] :" +in.toString());
-        System.out.println("now word is :" +input);
 
         Set<String> allWords = new HashSet<>();
-        doPermute ( in, outputString, used, inputLength, 0, allWords );
+        generateAllPermutationsAndKeepEnglishOnes(in, outputString, alreadyUsedLetter, inputLength, 0, allWords );
         return allWords;
     }
 
-    public static void doPermute (char[] in, StringBuffer outputString,
-                                  boolean[] used, int inputLength,
-                                  int level, Set<String> allWords) {
+    public static void generateAllPermutationsAndKeepEnglishOnes(char[] in, StringBuffer outputString,
+                         boolean[] alreadyUsedLetter, int inputLength, int level, Set<String> allWords) {
+
+        // Only look for same length anagram
         if (level == inputLength) {
             if (isEnglishWord(outputString.toString())) {
-                System.out.println("");
-                System.out.println("Yes! " + outputString.toString() + "  is the word in the dictionary");
                 allWords.add(outputString.toString());
             }
         }
 
+        // main loop for all possible permutations with actual number of letters
         for (int i = 0; i < inputLength; ++i) {
 
-            if (used[i]) continue;
+            if (alreadyUsedLetter[i]) continue;
 
             outputString.append(in[i]);
-            used[i] = true;
-            doPermute(in, outputString, used, inputLength, level + 1, allWords);
-            used[i] = false;
+            alreadyUsedLetter[i] = true;
+            generateAllPermutationsAndKeepEnglishOnes(in, outputString, alreadyUsedLetter, inputLength, level + 1, allWords);
+            alreadyUsedLetter[i] = false;
             outputString.setLength(outputString.length() - 1);
         }
     }
@@ -97,16 +94,14 @@ public class AnagramHelper {
 
     public static void main(String[] arg) {
 
-        initialiseEnglishDictionary();
+        AnagramHelper.initialiseEnglishDictionary();
         String[] array = {"cinema", "anemic", "iceman"};
         Set<String> expectedSets = new HashSet<>(Arrays.asList(array));
         Set<String> permutation = AnagramHelper.findPermutation("cinema");
         System.out.println(expectedSets);
         System.out.println(permutation);
         System.out.println(expectedSets.equals(permutation));
-//zymurgy
-        //System.out.println(AnagramHelper.findPermutation("eat more meat"));
-        System.out.println(AnagramHelper.findPermutation("YDA RMADE"));
+
     }
 
 }

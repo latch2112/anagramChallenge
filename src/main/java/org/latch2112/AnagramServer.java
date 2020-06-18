@@ -26,15 +26,13 @@ public class AnagramServer {
             } else {
                 response.type("application/json");
                 response.status(400);
-                return new AnagramsResponse(new HashSet<String>());
-                //return halt(400, "Bad Request");
+                return new AnagramsResponse(new HashSet<>());
             }
             }, gson::toJson);
 
         get("/anagrams/:string1/:string2", (request, response) -> {
             String string1 = request.params(":string1");
             String string2 = request.params(":string2");
-            System.out.println("string1="+string1);
             if (AnagramHelper.isStringValid(string1) && AnagramHelper.isStringValid(string2)) {
                 response.type("application/json");
                 return new AreAnagramsResponse(AnagramHelper.isAnagram(string1,string2));
@@ -43,7 +41,6 @@ public class AnagramServer {
                 response.status(400);
                 return new AreAnagramsResponse(false);
             }
-
         }, gson::toJson);
     }
 

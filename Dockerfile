@@ -13,6 +13,8 @@ RUN ["mvn", "verify"]
 
 # Adding source, compile and package into a fat jar
 ADD src /code/src
+# For running the test
+ADD web2 /code
 RUN ["mvn", "clean", "install"]
 
 ## multi-stage build to reduce size of container

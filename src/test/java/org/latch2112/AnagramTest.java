@@ -1,4 +1,4 @@
-//package org.latch2112;
+package org.latch2112;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Assertions;
@@ -13,9 +13,8 @@ public class AnagramTest {
 
     @BeforeAll
     static void setup() {
-        AnagramHelper.intialiseEnglishDictionary();
+        AnagramHelper.initialiseEnglishDictionary();
     }
-    
 
     @Test
     void testValidString() {
@@ -49,6 +48,16 @@ public class AnagramTest {
         Assertions.assertEquals( false, AnagramHelper.isAnagram("test", "whatever"));
         Assertions.assertEquals( false, AnagramHelper.isAnagram("Election results", "Lies – let's recount"));
 
+    }
+
+    @Test
+    void testPermutations() {
+        String[] array = {"cinema", "anemic", "iceman"};
+        Set<String> expectedSets = new HashSet<>(Arrays.asList(array));
+        Set<String> permutation = AnagramHelper.findPermutation("cinema");
+        System.out.println(expectedSets);
+        System.out.println(permutation);
+        Assertions.assertEquals(true, expectedSets.equals(permutation));
     }
 
 }
