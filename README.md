@@ -49,7 +49,7 @@ WEB ---- (introduction provided by jaw@riacs) -------------------------
 Welcome to web2 (Webster's Second International) all 234,936 words worth.
 The 1934 copyright has lapsed, according to the supplier.
 ``` 
-Only same length anagram is returned for simplicity.
+Only same length anagrams is returned for simplicity.
 
 ## Build and run the solution with docker:
 
